@@ -1,17 +1,33 @@
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+import { Button, Heading, Text, Code } from "@chakra-ui/react";
 
 import { useAuth } from "../lib/auth";
 
 export default function Home() {
   const auth = useAuth();
 
-  return auth.user ? (
+  return (
     <div>
-      <p>Email: {auth.user.email}</p>
-      <button onClick={(e) => auth.signOut()}>Sign Out</button>
+      <Head>
+        <title>Fast Feedback</title>
+      </Head>
+      <main>
+        <Heading>Fast Feedback</Heading>
+        {auth.isLoading ? (
+          <Text>Loading ...</Text>
+        ) : (
+          <Text>
+            Email:
+            <Code>{auth.user ? auth.user.email : "None"}</Code>
+          </Text>
+        )}
+      </main>
+
+      {auth.user ? (
+        <Button onClick={(e) => auth.signOut()}>Sign Out</Button>
+      ) : (
+        <Button onClick={(e) => auth.signIn()}>Sign In</Button>
+      )}
     </div>
-  ) : (
-    <button onClick={(e) => auth.signIn()}>Sign In</button>
   );
 }
