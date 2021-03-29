@@ -3,6 +3,7 @@ import { theme as chakraTheme } from "@chakra-ui/react";
 const theme = {
   ...chakraTheme,
   fonts: {
+    // use the chakra fonts and the customizeds
     ...chakraTheme.fonts,
     body: "Inter, -apple-system, sans-serif"
   },
