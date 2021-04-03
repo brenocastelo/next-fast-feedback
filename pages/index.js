@@ -1,11 +1,13 @@
 import Head from "next/head";
-import { Button, Heading, Text, Code, Flex } from "@chakra-ui/react";
+import { Button, Heading, Flex } from "@chakra-ui/react";
 
 import { useAuth } from "@/lib/auth";
 import { Logo } from "@/styles/theme";
 
 export default function Home() {
-  const { user, isLoading, signIn, signOut } = useAuth();
+  const { user, isLoading, signIn } = useAuth();
+
+  console.log(user);
 
   return (
     <Flex
@@ -19,11 +21,10 @@ export default function Home() {
         <title>Fast Feedback</title>
       </Head>
       <Logo />
-
       <Heading>Fast Feedback</Heading>
       {user ? (
-        <Button mt={4} size="sm" onClick={(e) => signOut()}>
-          Sign Out
+        <Button as="a" href="/dashboard">
+          Dashboard
         </Button>
       ) : (
         <Button
